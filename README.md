@@ -65,7 +65,7 @@ docker run --rm ubuntu:24.04 bash -lc 'echo "PID 1:"; cat /proc/1/comm; echo "Vi
 
 > Answer here: starting a container from ubuntu:24.04 image, then executing echo commands to look for different process IDs being executed in the container. The first print output the most recently active process in the container. Then we use the ls to list visible processes. 
 
-![Alt Text](assets/image.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image.png?raw=true)
 
 ## Part D — Build the App
 
@@ -101,7 +101,7 @@ Go into the `app.py` file and change the `message`. Build the app again and take
 **Question 8: what does the `curl` command do? Paste below and explain the output. What happens now that you've changed `app.py`?**
 > Answer here: call the service exposed by 8080 port and get the new message in the service response since I changed the message before building the app again.
 
-![Alt Text](assets/image2.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image2.png?raw=true)
 
 
 **Question 9: Without any modifications, predict what would happen if you changed `requirements.txt` and rerun the build? How is this different from Question 8? Do not actually modify your dependencies.**
@@ -124,9 +124,9 @@ In a web browser, go to: `http://localhost:8080/`. Your output will have the sam
 **Question 10: What happens if you refresh your web browser from part D.7? Try it at least three time. Include screenshots in your answer.**
 > Answer here: the total hits will increased by each request.
 
-![alt text](assets/image-14.png)
-![alt text](assets/image-15.png)
-![alt text](assets/image-16.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-14.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-15.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-16.png?raw=true)
 
 
 ## Part E — Scale the App
@@ -142,15 +142,15 @@ Test it out with the web browser `http://localhost:8080/`
 **Question 11: What do you see in your terminal vs your web browser? Add screenshots to your answer.**
 > Answer here: in my terminal there are 3 replicas of the same app running, but in my browser I'm calling the same application with the same URL:PORT.
 
-![Alt Text](assets/image6.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image6.png?raw=true)
 
 
 **Question 12: What happens to the container IP when hitting the endpoint multiple times? Paste examples of what you are opserving.**
 > Answer here: it may vary based on the container replica that received the request.
 
-![alt text](assets/image-17.png)
-![alt text](assets/image-18.png)
-![alt text](assets/image-19.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-17.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-18.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-19.png?raw=true)
 
 **Question 13: What did you just build?**
 > Answer here: the same API with 3 replicas.
@@ -163,7 +163,7 @@ docker ps --format "table {{.Names}}	{{.Image}} {{.Ports}}"
 ```
 > Attack a screenshot of your results here:
 
-![Alt Text](assets/image9.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image9.png?raw=true)
 
 
 **Question 15: How does the app know the IP of the redis container?**
@@ -183,13 +183,13 @@ Run `docker network ls`. Find the network ending in `_appnet`.
 **Question 17.a.What is your project's network name and network ID?**
 > Answer here: fd0724c19fda   dockeractivitycanvas_appnet
 
-![Alt Text](assets/image10.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image10.png?raw=true)
 
 
 **Question 17.b. Run `docker network inspect <network-name>` after replacing the placeholder with your network's actual name. Locate `Subnet`, `Gateway`, and container `IPv4Address` entries for all running. Addresses differ between computers (and networks). Outline all your IPs below and describe what you observed.**
 > Answer here: each container has an IPv4Address within the subnet.
 
-![Alt Text](assets/image11.png)
+![Alt Text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image11.png?raw=true)
 
 
 **Question 18. What subnet and gateway did Docker assign? What does the CIDR suffix (such as `/16`) mean?**
@@ -222,7 +222,7 @@ docker compose exec web getent hosts web
 
 > Answer and screenshot here: because web has 3 replicas. Each container has an individual IP addresses assigned.
 
-![alt text](assets/image12.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image12.png?raw=true)
 
 **Question 21. Why does `app.py` use the name `redis` rather than an IP? How does `docker compose exec` differ from `docker run`?**
 
@@ -244,8 +244,8 @@ docker compose ps
 **Question 22.a. Try `http://localhost:9090/`, then `http://localhost:8080/`. The old port should fail unless another program uses it.**
 > Include a screenshot: only 9090 works.
 
-![alt text](assets/image-1.png)
-![alt text](assets/image-2.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-1.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-2.png?raw=true)
 
 **Question 22.b. What happened at each URL? What port mapping does `docker compose ps` display?**
 > Answer here: Only localhost:9090 threw a succesfull response, because the services has 9090 as listening port. docker compose ps display the exposed port and the internal port of the docker service. 
@@ -254,7 +254,7 @@ docker compose ps
 **Question 23. Did nginx's listening port change? Trace a request from your computer through nginx to a web replica. Explain what commends you used to know this.**
 > Answer here: Yes it changed to 9090. I've used docker logs -f container-name to trace logs from each service. This command shows the full log of a give container or service.
 
-![alt text](assets/image-3.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-3.png?raw=true)
 
 
 ## Part I — Failure and recovery 
@@ -263,9 +263,9 @@ docker compose ps
 
 > Screenshots here:
 
-![alt text](assets/image-4.png)
-![alt text](assets/image-5.png)
-![alt text](assets/image-6.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-4.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-5.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-6.png?raw=true)
 
 
 **Question 25. Does the app still work? How many replicas remain? Which component chooses a web replica?**
@@ -277,9 +277,9 @@ Find Redis with `docker compose ps -a`, then run `docker stop <redis-container-n
 **Question 26. What happens to `/` and `/health`? Use `app.py` to explain why the two routes behave differently..**
 > Answer here: / route answers with a 500 Internal Server Error HTTP Status because it request redis to count the hits, in order to fulfill the request. Meanwhile /health answer with a 200 OK HTTP Status because it doesn't use redis to fulfill the request, it just needs the service to be up and running. 
 
-![alt text](assets/image-7.png)
-![alt text](assets/image-8.png)
-![alt text](assets/image-9.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-7.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-8.png?raw=true)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-9.png?raw=true)
 
 
 **Question 27. Compare losing one web replica with losing Redis. Which other component is a single point of failure in this setup?**
@@ -291,7 +291,7 @@ Restore the stack by running `docker compose up -d --scale web=3`. If Redis rema
 **Question 27. Did the shared hit counter retain its value? What happens to Redis data if its container is recreated? Look for a Redis volume in the Compose file.**
 > Answer here: Yes the counter retain its value. As I could see in the logs, the data is being backed up from last version of RDB from previeous container. When I did docker inspect redis-container-id I found that there's a default mount binding from /var/lib/docker/volumnes to /data (container's directory), which means the redis image take the available docker default volume and bind internally to the default /data directory.
 
-![alt text](assets/image-10.png)
+![alt text](https://github.com/jeac02/docker-in-class-activity/blob/main/assets/image-10.png?raw=true)
 
 
 ## Part J — Cloud and virtualization reflection 
