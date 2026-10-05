@@ -1,0 +1,30 @@
+services:
+  web:
+    build: .
+    image: demo/flask-web:latest
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    networks:
+      - appnet
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - appnet
+
+  nginx:
+    image: nginx:1.27.5-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+    ports:
+      - "9090:8080"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
